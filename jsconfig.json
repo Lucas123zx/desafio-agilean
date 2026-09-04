@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "types": ["cypress"]
+  },
+  "include": [
+    "**/*.js", 
+    "cypress/**/*.js",
+    "eslint.config.mjs"
+  ]
+}

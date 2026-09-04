@@ -1,0 +1,20 @@
+{
+  "name": "desafio-agilean",
+  "version": "1.0.0",
+  "description": "Projeto voltado a resolver o desafio da Agilean",
+  "main": "index.js",
+  "scripts": {
+    "code:verify": "npx eslint .",
+    "cy:open-dev": "npm run code:verify && npx cypress open --env version=dev",
+    "cy:run-dev": "npm run code:verify && npx cypress open --env version=dev"
+  },
+  "keywords": [],
+  "author": "Lucas",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "cypress": "^16.0.0",
+    "eslint": "^10.9.1",
+    "eslint-plugin-cypress": "^7.0.1"
+  }
+}
