@@ -51,7 +51,7 @@ Ou caso possua chave SSH
 
 
   > [!Warning]
-  > Será necessário ter a "env" configurado no arquivo cypress.env.json.  
+  > Será necessário ter "cahves" e "valores" no arquivo cypress.env.json.  
 
   Modo interativo:
 
