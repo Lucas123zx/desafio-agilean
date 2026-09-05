@@ -58,14 +58,8 @@ Ou caso possua chave SSH configurada:
   > [!Note]
   > O projeto possui ESLint configurado para identificar possíveis más práticas e problemas de padronização no código..
 
-<<<<<<< HEAD
     $ npm run code:verify
      
-=======
-      $ npm run code:verify
- 
->>>>>>> e697ab0 (add test cases 11 a 21)
-
   Modo interativo:
 
     $ npm run cy:open-dev   
