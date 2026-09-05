@@ -20,9 +20,9 @@
   > No modo headless pode ocorrer erro ao executar no Electron (Depreciado). 
 
 #### Pré-requsiitos: 
-1. Possua browser instalado na máquina (Mozila Firefox ou Google Chrome).
+1. Possua browser instalado na máquina Mozila Firefox ou Google Chrome.
 
-2. clonar projeto. 
+2. Clonar projeto. 
         
     $ git clone https://github.com/Lucas123zx/desafio-agilean.git
 
@@ -31,13 +31,13 @@ Ou caso possua chave SSH
     $ git clone git@github.com:Lucas123zx/desafio-agilean.git
 
 
-3. criar arquivo `cypress.env.json`
+3. Criar arquivo `cypress.env.json` na raiz do projeto.
    - deixarei um exemplo em `cypress.env.example.json`
    - irá precisar copiar chaves e valores do  `cypress.env.example.json` para o arquivo `cypress.env.json`
 
-4. após inserir valores em `cypress.env.json`
+4. Após inserir valores em `cypress.env.json`
    
-5. no terminal execute o comando 
+5. Na pasta raiz do projeto abra o terminal e execute o comando. 
       
     $ npm install
 ---
@@ -69,6 +69,13 @@ Ou caso possua chave SSH
   Modo headless (Chrome/Firefox): 
   
     $ npm run cy:run-dev-chrome 
+
+    output:
+      > desafio-agilean@1.0.0 cy:run-dev
+      > npm run code:verify && npx cypress run --browser chrome --env version=dev
+
+      > desafio-agilean@1.0.0 code:verify
+      > npx eslint .
     
     ou   
 
@@ -76,7 +83,7 @@ Ou caso possua chave SSH
 
     output:
       > desafio-agilean@1.0.0 cy:run-dev
-      > npm run code:verify && npx cypress run --env version=dev
+      > npm run code:verify && npx cypress run --browser firefox --env version=dev
 
       > desafio-agilean@1.0.0 code:verify
       > npx eslint .
