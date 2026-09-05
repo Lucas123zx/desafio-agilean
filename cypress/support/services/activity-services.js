@@ -17,7 +17,6 @@ class ActivityService {
         }
       }
     );
-
   }
 
   createActivity(body, datas) {

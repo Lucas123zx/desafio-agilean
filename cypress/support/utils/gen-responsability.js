@@ -19,9 +19,9 @@ function generateEmail(name, lastName) {
   return `${name}-${lastName}@tuamaeaquelaursa.com`;
 }
 
-export function genReponsability() {
-  const name = generateName();
-  const email = genReponsability(fullName.name, fullName.name);
+export function generateReponsability() {
+  const fullName = generateName();
+  const email = generateEmail(fullName.name, fullName.lastName);
   const phone = generatePhoneNumber();
 
   return { name, email, phone };

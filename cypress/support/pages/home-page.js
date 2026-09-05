@@ -1,5 +1,5 @@
 import { homeElements } from '../elements/home-elements';
-import { click } from '../helpers/actions';
+import { click, getEl } from '../helpers/actions';
 
 class HomePage { 
 
@@ -11,7 +11,7 @@ class HomePage {
     return cy.get(homeElements.trLinhaActivity);
   }
 
-  validateActivty(datas) {
+  validateActivity(datas) {
     this.listActivites().last().within(($tr) => {
       cy.contains(datas.total).should('be.visible');
       cy.contains(datas.activity).should('be.visible');
@@ -22,8 +22,18 @@ class HomePage {
   }
 
   validateActivityLate(datas, text) {
-    this.validateActivty(datas);
+    this.validateActivity(datas);
     cy.contains(text).should('be.visible');
+  }
+
+  validateHome(email) {
+    this.listActivites().should('be.visible');
+    getEl(homeElements.h1AppTitle).should('be.visible');
+    getEl(homeElements.spnEmailUser).should('be.visible').and('contain.text', email);
+    getEl(homeElements.divCardSummaryLate).should('be.visible');
+    getEl(homeElements.divCardSummaryPending).should('be.visible');
+    getEl(homeElements.divCardSummaryRegister).should('be.visible');
+    getEl(homeElements.divCardSummaryResolved).should('be.visible');
   }
 
 }

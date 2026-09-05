@@ -12,27 +12,34 @@
 2. [cypress](https://www.cypress.io/)
 3. [mochawesome](https://www.npmjs.com/package/cypress-mochawesome-reporter)
 4. [eslint](https://www.npmjs.com/package/eslint-plugin-cypress)
-
-
+   
 #### Observação:
 > [!Note]
-  > Garanta que o node que está na sua máquina não é 20 ou 25, o Cypress_16 não é suportado nessas versões do node.
+  > O Cypress 16 requer o [Node.js](https://nodejs.org/en) 22.x , 24.x ou 26.x ou superior para instalar o binário do Cypress. O Node.js 20 e o Node.js 25 não são mais suportados. Consulte [os requisitos do sistema](https://docs.cypress.io/app/get-started/install-cypress#Nodejs). 
+  >
+  > No modo headless pode ocorrer erro ao executar no Electron (Depreciado). 
 
 #### Pré-requsiitos: 
-1. clonar projeto. 
-     
-        
-        $ git clone 
+1. Possua browser instalado na máquina (Mozila Firefox ou Google Chrome).
 
-2. criar arquivo `cypress.env.json`
+2. clonar projeto. 
+        
+    $ git clone https://github.com/Lucas123zx/desafio-agilean.git
+
+Ou caso possua chave SSH
+
+    $ git clone git@github.com:Lucas123zx/desafio-agilean.git
+
+
+3. criar arquivo `cypress.env.json`
    - deixarei um exemplo em `cypress.env.example.json`
    - irá precisar copiar chaves e valores do  `cypress.env.example.json` para o arquivo `cypress.env.json`
 
-3. após inserir valores em `cypress.env.json`
+4. após inserir valores em `cypress.env.json`
    
-4. no terminal execute o comando 
+5. no terminal execute o comando 
       
-        $ npm install
+    $ npm install
 ---
 
 #### Execução
@@ -40,7 +47,7 @@
   > [!Note]
   > Lint, configurado para alertar de más práticas no codigo.
 
-    $ npm run code:verification
+    $ npm run code:verify
 
 
   > [!Warning]
@@ -48,21 +55,31 @@
 
   Modo interativo:
 
-      $ npm run cy:open   
+      $ npm run cy:open-dev   
 
       output:
-      $ npm run code:verification && npx cypress open --env version=local
-      $ npx eslint .
+      > desafio-agilean@1.0.0 cy:open-dev
+      > npm run code:verify && npx cypress open --env version=dev
+
+      > desafio-agilean@1.0.0 code:verify
+      > npx eslint .
 
 
     
-  Modo headless:
+  Modo headless (Chrome/Firefox): 
   
-    $ npm run cy:run    
+    $ npm run cy:run-dev-chrome 
+    
+    ou   
+
+    $ npm run cy:run-dev-firefox 
 
     output:
-      $ npm run code:verification && npx cypress run --env version=local
-      $ npx eslint .
+      > desafio-agilean@1.0.0 cy:run-dev
+      > npm run code:verify && npx cypress run --env version=dev
+
+      > desafio-agilean@1.0.0 code:verify
+      > npx eslint .
 
 ---
 #### Reports
@@ -71,5 +88,5 @@
 
         ├── cypress/
         │   ├── reports/
-        │   ├── index.html [Relatório de Testes]
-
+        │   │   ├── html/ 
+        │   │   │   ├── index.html/ [Relatório de Testes]

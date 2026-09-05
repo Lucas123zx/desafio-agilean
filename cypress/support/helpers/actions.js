@@ -109,8 +109,16 @@ function select(el, valeu) {
   }
 }
 
+function screenShot() {
+  try {
+    cy.screenshot({ overwrite: true, capture:'fullPage' });
+  } catch (error) {
+    cy.log('Exceção capturada: ' + error.message);
+  }
+}   
+
 export {
   set, click, waitElement, waitElementIndex, clickIndex, check,
   clear, getText, scrollTo, select, waitElementEnable, 
-  clickElementEnabled
+  clickElementEnabled, screenShot, getEl
 };

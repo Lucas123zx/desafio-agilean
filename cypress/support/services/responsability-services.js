@@ -17,7 +17,6 @@ class ResponsabilityService {
         }
       }
     );
-
   }
 
   createResposanbility(body, datas) {

@@ -5,7 +5,6 @@ export default defineConfig([
   {
     extends: [pluginCypress.configs.recommended],
     rules: {
-      'cypress/no-unnecessary-waiting': 'off',
       'quotes': ['error', 'single'],
       'max-len': [
         'error', 

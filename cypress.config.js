@@ -1,6 +1,7 @@
 const { defineConfig } = require('cypress');
 
 const setupNodeEvents = async (on, config) => {
+  require('cypress-mochawesome-reporter/plugin')(on);
 
   const enviroment = config.env.version || 'dev';
   const envConfig = config.env[enviroment];
@@ -25,11 +26,26 @@ const setupNodeEvents = async (on, config) => {
 };
 
 module.exports = defineConfig({
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: 'Relatório - Gerenciado de Atividades',
+    embeddedScreenshots: true,
+    overwrite: true,
+    inlineAssets: true,
+    saveAllAttempts: true,
+  },
   e2e: {
     setupNodeEvents,
+    screenshotsFolder: 'cypress/screenshots',
+    videosFolder: 'cypress/videos',
     chromeWebSecurity: true,
     screenshotOnRunFailure: true,
     viewportWidth: 1920,
     viewportHeight: 1080,
+    requestTimeout: 10000,
+    pageLoadTimeout: 10000,
+    taskTimeout: 10000,
+    defaultCommandTimeout: 10000,
   },
 });
