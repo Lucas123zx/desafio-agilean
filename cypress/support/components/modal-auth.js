@@ -1,18 +1,18 @@
-import { modalLogin, modalRegister } from '../elements/modals';
+import { modalLoginElements, modalRegisterElements } from '../elements/modals';
 import { set, click } from '../helpers/actions';
 
 class ModalAuth { 
 
   registerUser(email, password) {
-    set(modalRegister.inpEmail, email);
-    cy.get(modalRegister.inpPassword).type(password, {log: false});
-    click(modalRegister.bntRegister);
+    set(modalRegisterElements.inpEmail, email);
+    cy.get(modalRegisterElements.inpPassword).type(password, { log: false });
+    click(modalRegisterElements.bntRegister);
   }
 
   loginUser(email, password) {
-    set(modalLogin.inpEmail, email);
-    cy.get(modalLogin.inpPassword).type(password, {log: false});
-    click(modalLogin.btnEnter);
+    set(modalLoginElements.inpEmail, email);
+    cy.get(modalLoginElements.inpPassword).type(password, { log: false });
+    click(modalLoginElements.btnEnter);
   }
 
 }

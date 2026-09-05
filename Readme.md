@@ -4,8 +4,14 @@
 #### Padrão de projeto POM:
 
 1. POM (Page Object Model Patterns)
-  -  https://www.browserstack.com/guide/cypress-page-object-model
+  - Foi utilizado o padrão Page Object Model (POM) para organizar e separar as responsabilidades da automação
+  Referencia: https://www.browserstack.com/guide/cypress-page-object-model
+  
 2. Padrão AAA: Arrange, Act, Assert 
+  - Os testes foram estruturados seguindo o padrão AAA (Arrange, Act, Assert):
+    - Arrange: preparação do cenário e dos dados necessários para o teste; 
+    - Act: execução da ação que será testada;
+    - Assert: validação do resultado esperado.
 
 #### Ferramentas:
 1. [nodeJs](https://nodejs.org/pt/download) 
@@ -20,44 +26,51 @@
   > No modo headless pode ocorrer erro ao executar no Electron (Depreciado). 
 
 #### Pré-requsiitos: 
-1. Possua browser instalado na máquina Mozila Firefox ou Google Chrome.
+1. Browser instalado Mozila Firefox ou Google Chrome.
+2. Node.js instalado
+3. Git instalado
 
-2. Clonar projeto. 
+4. Clonar o projeto. 
         
     $ git clone https://github.com/Lucas123zx/desafio-agilean.git
 
-Ou caso possua chave SSH
+Ou caso possua chave SSH configurada:
 
     $ git clone git@github.com:Lucas123zx/desafio-agilean.git
 
 
-3. Criar arquivo `cypress.env.json` na raiz do projeto.
-   - deixarei um exemplo em `cypress.env.example.json`
-   - irá precisar copiar chaves e valores do  `cypress.env.example.json` para o arquivo `cypress.env.json`
-
-4. Após inserir valores em `cypress.env.json`
+5. Configurar variáveis de ambiente
+   - Criar arquivo `cypress.env.json` na raiz do projeto.
+   - Disponibilizado modelo de exemplo em `cypress.env.example.json`
+   - Copiar chaves e valores do `cypress.env.example.json` para o arquivo `cypress.env.json`
+  
+  > [!Warning]
+  > Será necessário ter a "chaves" e "valores" no arquivo cypress.env.json. 
    
-5. Na pasta raiz do projeto abra o terminal e execute o comando. 
-      
+6. Instalar dependenias. 
+  Na pasta raiz do projeto abra o terminal e execute o comando:
+  
     $ npm install
 ---
 
 #### Execução:
 
   > [!Note]
-  > Lint, configurado para alertar de más práticas no codigo.
+  > O projeto possui ESLint configurado para identificar possíveis más práticas e problemas de padronização no código..
 
+<<<<<<< HEAD
     $ npm run code:verify
-
-
-  > [!Warning]
-  > Será necessário ter "cahves" e "valores" no arquivo cypress.env.json.  
+     
+=======
+      $ npm run code:verify
+ 
+>>>>>>> e697ab0 (add test cases 11 a 21)
 
   Modo interativo:
 
-      $ npm run cy:open-dev   
+    $ npm run cy:open-dev   
 
-      output:
+    output:
       > desafio-agilean@1.0.0 cy:open-dev
       > npm run code:verify && npx cypress open --env version=dev
 
@@ -71,22 +84,37 @@ Ou caso possua chave SSH
     $ npm run cy:run-dev-chrome 
 
     output:
-      > desafio-agilean@1.0.0 cy:run-dev
-      > npm run code:verify && npx cypress run --browser chrome --env version=dev
+        > desafio-agilean@1.0.0 cy:run-dev
+        > npm run code:verify && npx cypress run --browser chrome --env version=dev
 
-      > desafio-agilean@1.0.0 code:verify
-      > npx eslint .
-    
+        > desafio-agilean@1.0.0 code:verify
+        > npx eslint .
+      
     ou   
 
     $ npm run cy:run-dev-firefox 
 
     output:
-      > desafio-agilean@1.0.0 cy:run-dev
-      > npm run code:verify && npx cypress run --browser firefox --env version=dev
+        > desafio-agilean@1.0.0 cy:run-dev
+        > npm run code:verify && npx cypress run --browser firefox --env version=dev
 
-      > desafio-agilean@1.0.0 code:verify
-      > npx eslint .
+        > desafio-agilean@1.0.0 code:verify
+        > npx eslint .
+
+---
+#### Estrutura dos cenários 
+  - Cada cenário possui uma finalidade específica e segue, sempre que possível, a estrutura:
+  - Preparação → Ação → Validação
+    - quais condições são necessárias para iniciar o teste;
+    - qual ação está sendo executada;
+    - qual comportamento é esperado;
+    - qual resultado deve ser validado.
+
+
+---
+#### Cenários automatizados
+
+
 
 ---
 #### Reports

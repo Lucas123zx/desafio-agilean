@@ -23,7 +23,7 @@ class ResponsabilityService {
     return cy.request(
       { 
         method: ApiTemplate.Method.POST,
-        url: `${this.url}&user_id=eq.${userId}&order=criado_em.asc`,
+        url: this.url,
         headers: {
           Authorization: `Bearer ${datas.access_token}`,
           'apikey': Cypress.expose('supabaseKey'),
@@ -31,6 +31,19 @@ class ResponsabilityService {
         body: body
       }
     );
+  }
+
+  verifyHasResposanbility(datas, body) {
+    return this.getResponsabilities(datas).then((response) => {      
+      const total = response.body.length;
+
+      if(total === 0) {
+        return this.createResposanbility(body, datas)
+        .then((newResponse) => { newResponse.body; });
+      }
+
+      return response.body[0];
+    });
   }
 
 }

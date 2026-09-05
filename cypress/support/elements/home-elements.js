@@ -10,4 +10,5 @@ export const homeElements = {
   divCardSummaryLate: '[data-cy="card-atrasadas"]',
   divGraphActivity: '[data-cy="graph-atividades"]',
   trLinhaActivity: '[data-cy^="linha-atividade-"]',
+  divListEmpty: '[data-cy="tabela-vazia"]'
 };

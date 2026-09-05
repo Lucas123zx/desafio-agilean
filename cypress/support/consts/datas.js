@@ -6,5 +6,5 @@ export const statusActivity = {
 export const priorityActivity = {
   low: 'Baixa',
   average: 'Média',
-  High: 'Alta'
+  high: 'Alta'
 };

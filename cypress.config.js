@@ -47,5 +47,6 @@ module.exports = defineConfig({
     pageLoadTimeout: 10000,
     taskTimeout: 10000,
     defaultCommandTimeout: 10000,
+    watchForFileChanges: false
   },
 });

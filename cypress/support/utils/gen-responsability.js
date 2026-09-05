@@ -16,7 +16,9 @@ function generatePhoneNumber() {
 }
 
 function generateEmail(name, lastName) {  
-  return `${name}-${lastName}@tuamaeaquelaursa.com`;
+  const email = `${name}-${lastName}@tuamaeaquelaursa.com`;
+  
+  return email.toLocaleLowerCase();
 }
 
 export function generateReponsability() {
@@ -24,5 +26,5 @@ export function generateReponsability() {
   const email = generateEmail(fullName.name, fullName.lastName);
   const phone = generatePhoneNumber();
 
-  return { name, email, phone };
+  return { name: `${fullName.name} ${fullName.lastName}`, email, phone };
 }

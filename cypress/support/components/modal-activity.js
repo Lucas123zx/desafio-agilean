@@ -1,45 +1,61 @@
-import { modalActivity } from '../elements/modals';
+import { modalActivityElements } from '../elements/modals';
 import { set, click, select, getEl } from '../helpers/actions';
 
 class ModalActivity {
 
   clickBtnRegisterActivity() {
-    click(modalActivity.btnRegisterActivity);
+    click(modalActivityElements.btnRegisterActivity);
   }
 
   clickBtnCancelActivity() {
-    click(modalActivity.btnCancelActivity);
+    click(modalActivityElements.btnCancelActivity);
   }
 
   clickBtnCloseActivity() {
-    click(modalActivity.btnCloseModalActivity);
+    click(modalActivityElements.btnCloseModalActivity);
+  }
+
+  clickBtnAddReponsability() {
+    click(modalActivityElements.btnAddResponsabilityActivity);
   }
 
   registerActivity(data) {
-    select(modalActivity.slcStatusActivity, data.status);
-    select(modalActivity.slcPriorityActivity, data.priority);
-    set(modalActivity.inpNameActivity, data.activity);
-    select(modalActivity.slcResponsabilityActivity, data.responsability.id);
-    set(modalActivity.inpTermActivity, data.date);
+    select(modalActivityElements.slcStatusActivity, data.status);
+    select(modalActivityElements.slcPriorityActivity, data.priority);
+    set(modalActivityElements.inpNameActivity, data.activity);
+    select(modalActivityElements.slcResponsabilityActivity, data.responsability.id);
+    set(modalActivityElements.inpTermActivity, data.date);
     this.clickBtnRegisterActivity();
   }
 
   validateShowMensagensError(texts) {
-    getEl(modalActivity.pErroNameActivity)
+    getEl(modalActivityElements.pErroNameActivity)
       .should('be.visible')
       .and('contain.text', texts.name);
 
-    getEl(modalActivity.pErroReponsabilityActivity)
+    getEl(modalActivityElements.pErroReponsabilityActivity)
       .should('be.visible')
       .and('contain.text', texts.responsability);
 
-    getEl(modalActivity.pErroTermActivity)
+    getEl(modalActivityElements.pErroTermActivity)
       .should('be.visible')
       .and('contain.text', texts.term);
   }
 
-  validateShowCountCaracteres(text) {
-    getEl(modalActivity.pCountActivity)
+  validateShowCountCaracters(text) {
+    getEl(modalActivityElements.pCountActivity)
+      .should('be.visible')
+      .and('contain.text', text);
+  }
+
+  validateShowNameResponsability(datas) {
+    getEl(modalActivityElements.slcResponsabilityActivity)
+      .find('option:selected')
+      .should('have.text', datas.label);
+  }
+  
+  validateShowModalActivity(text) {
+    getEl(modalActivityElements.divModalActivity)
       .should('be.visible')
       .and('contain.text', text);
   }

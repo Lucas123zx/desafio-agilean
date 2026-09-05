@@ -1,4 +1,5 @@
 import { activitiesTotal, responsability } from '../support/hooks/get-responsabilities-acvities';
+import '../support/hooks/login-system';
 import ModalAuth from '../support/components/modal-auth';
 import ModalActivity from '../support/components/modal-activity';
 import { statusActivity, priorityActivity } from '../support/consts/datas';
@@ -6,20 +7,12 @@ import { generateNameActivity } from '../support/utils/gen-activity';
 import { converteDate } from '../support/utils/date';
 import HomePage from '../support/pages/home-page';
 import { screenShot } from '../support/helpers/actions';
+import { credential } from '../support/config/credential';
 
-describe('Register Activity', () => {
-  let token = {
-    email: Cypress.expose('email'),
-    password: Cypress.expose('password')
-  };
+describe('Register activity', () => {
   const date = new Date();
 
-  beforeEach('Access page', () => {
-    cy.visit(Cypress.expose('url'));
-  });
-
-  beforeEach('Login', () => {
-    ModalAuth.loginUser(token.email, token.password);
+  beforeEach('Modal register activity is open', () => {
     HomePage.clickBtnRegisterActivity();
   });
 
@@ -140,16 +133,16 @@ describe('Register Activity', () => {
   
   });
 
-  describe('Activity modal interface', () => {
+  describe('Modal activity interface', () => {
 
     it('CT[08] - Validar exibição de contador de caracteres em campo "atividade"', () => {
       const textCount = '0/50';
       
-      ModalActivity.validateShowCountCaracteres(textCount);
+      ModalActivity.validateShowCountCaracters(textCount);
     });
 
     it('CT[09] - Validar o cancelamento ao cadastrar Atividade', () => {      
-      const email = token.email;
+      const email = credential.email;
 
       ModalActivity.clickBtnCancelActivity();
 
@@ -157,7 +150,7 @@ describe('Register Activity', () => {
     });
 
     it('CT[10] - Validar o fechamento da modal de cadastro de Atividade', () => {      
-      const email = token.email;
+      const email = credential.email;
 
       ModalActivity.clickBtnCloseActivity();
 

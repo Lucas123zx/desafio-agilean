@@ -111,7 +111,7 @@ function select(el, valeu) {
 
 function screenShot() {
   try {
-    cy.screenshot({ overwrite: true, capture:'fullPage' });
+    cy.screenshot({ overwrite: true, capture: 'fullPage' });
   } catch (error) {
     cy.log('Exceção capturada: ' + error.message);
   }
