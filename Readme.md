@@ -42,7 +42,7 @@ Ou caso possua chave SSH
     $ npm install
 ---
 
-#### Execução
+#### Execução:
 
   > [!Note]
   > Lint, configurado para alertar de más práticas no codigo.
