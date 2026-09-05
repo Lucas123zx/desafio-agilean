@@ -4,7 +4,7 @@
 #### Padrão de projeto POM:
 
 1. POM (Page Object Model Patterns)
-  1. https://www.browserstack.com/guide/cypress-page-object-model
+  -  https://www.browserstack.com/guide/cypress-page-object-model
 2. Padrão AAA: Arrange, Act, Assert 
 
 #### Ferramentas:
