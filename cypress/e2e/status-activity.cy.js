@@ -1,0 +1,1 @@
+import { responsability, activitiesTotal } from '../support/hooks/get-responsabilities-acvities';

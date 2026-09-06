@@ -20,6 +20,7 @@
 2. [cypress](https://www.cypress.io/)
 3. [mochawesome](https://www.npmjs.com/package/cypress-mochawesome-reporter)
 4. [eslint](https://www.npmjs.com/package/eslint-plugin-cypress)
+5. [faker-js](https://fakerjs.dev/)
    
 #### Observação:
 > [!Note]
@@ -100,42 +101,85 @@ Ou caso possua chave SSH configurada:
 ---
 ## Cenários automatizados
 
-- CT[01] - Nome do cenário
-  - Descrição do que o cenário valida.
+Cadastro de atividade (register-activity.cy.js)
 
-- CT[02] - Nome do cenário
-  - Descrição do que o cenário valida.
+- CT[01] - Cadastro com dados válidos
+- CT[02] - Prazo menor que a data atual (atividade atrasada)
+- CT[03] - Prazo igual à data atual
+- CT[04] - Campo Atividade com 51 caracteres (limite 50 no front)
+- CT[05] - Campo Atividade com 50 caracteres
+- CT[06] - Campo Atividade com 49 caracteres
+- CT[07] - Mensagens de obrigatoriedade sem preencher campos
+- CT[08] - Contador de caracteres 0/50
+- CT[09] - Cancelar cadastro e voltar à home
+- CT[10] - Fechar modal de cadastro
 
-- CT[03] - Nome do cenário
-  - Descrição do que o cenário valida.
- 
-  
+Cadastro de responsável (register-responsability.cy.js)
+
+- CT[11] - Cadastro com dados válidos
+- CT[12] - Nome com mais de 51 caracteres
+- CT[13] - Nome com 50 caracteres
+- CT[14] - Nome com 49 caracteres
+- CT[15] - E-mail inválido
+- CT[16] - E-mail com espaço
+- CT[17] - Obrigatoriedade dos campos
+- CT[19] - Cancelar e voltar ao modal de atividade
+- CT[20] - Fechar modal de responsável
+- CT[21] - Telefone inválido (85)
+
+
+Resumo e gráfico (summary.cy.js)
+Estes cenários preparam o estado pela API (criar/alterar/excluir atividade) e validam o resumo na UI.
+
+- CT[22] - Incremento de Cadastradas após criar atividade
+- CT[23] - Decremento de Cadastradas após excluir
+- CT[24] - Incremento de Resolvidas ao mudar status
+- CT[25] - Incremento de Pendentes (Não Iniciada)
+- CT[26] - Incremento de Pendentes (Em Andamento)
+- CT[27] - Incremento de Atrasadas (Não Iniciada + prazo expirado)
+- CT[28] - Incremento de Atrasadas (Em Andamento + prazo expirado)
+- CT[29] - Gráfico: percentual de cadastradas
+- CT[30] - Gráfico: percentual de resolvidas
+- CT[32] - Gráfico: percentual de pendentes
+- CT[34] - Decremento de Resolvidas após excluir resolvida
+- CT[35] - Decremento de Pendentes (Não Iniciada)
+- CT[36] - Decremento de Pendentes (Em Andamento)
+- CT[37] - Decremento de Atrasadas após excluir expirada
+
 ---
 ## Decisões técnicas
 
 ### POM — Page Object Model
 
-Decisão: Utilizar o padrão Page Object Model para organizar os testes.
+Decisão: Organizar a automação em páginas, componentes de modal e mapeamento de elementos.
 
-Motivo: Separar a lógica de interação com a aplicação dos cenários de teste, facilitando a manutenção e evitando duplicação de código.
+Motivo: Separar interação com a UI dos cenários, reduzindo duplicação e facilitando manutenção.
+
+Onde: cypress/support/pages/, cypress/support/components/, cypress/support/elements/.
+
+### Camada de elementos (data-cy)
+
+Decisão: Centralizar seletores em arquivos de elements, priorizando atributos data-cy.
+
+Motivo: Isolar o contrato com o front. Se um seletor mudar, o ajuste fica em um único lugar.
 
 ### Componentes reutilizáveis
 
-Decisão: Criar classes/componentes específicos para os modais da aplicação, como ModalActivity, ModalResponsability e ModalAuth..
+Decisão: Classes específicas para ModalActivity, ModalResponsability e ModalAuth.
 
-Motivo: Centralizar as interações e validações relacionadas a cada modal, permitindo que os métodos sejam reutilizados por diferentes cenários.
+Motivo: Reutilizar fluxos de login, cadastro de atividade e cadastro de responsável em vários specs.
 
 ### Padrão AAA
 
-Decisão: Utilizar o padrão AAA para estruturar os testes, mantendo uma separação clara entre preparação, execução e validação.
+Decisão: Estruturar cada teste em preparação (Arrange), ação (Act) e validação (Assert).
 
-Motivo: Organiza os teste de forma clara e estruturada, facilitando a compreesã do que o teste precisa para ser executado, quais ações serão realizadas e quais resultados serão validados
+Motivo: Deixar explícito o que o cenário precisa, o que executa e o que comprova.
 
 ### Geração de dados
 
-Decisão: Utilizar funções para geração dinâmica dos dados de teste.
+Decisão: Gerar nomes, e-mails e telefones dinamicamente (@faker-js/faker). Limites de caracteres usam valores controlados (repeat).
 
-Motivo: Evitar valores fixos nos cenários e reduzir a possibilidade de conflitos entre execuções, além de facilitar a reutilização dos dados.
+Motivo: Reduzir conflito entre execuções e reutilizar massa sem hardcode nos specs de caminho feliz.
 
 ### Criação de métodos reutilizáveis
 
@@ -145,15 +189,33 @@ Motivo: Evitar a repetição de comandos Cypress nos cenários e facilitar a man
 
 ### Helpers
 
-Decisão: Criar funções auxiliares para centralizar ações básicas e recorrentes realizadas nos elementos da aplicação
+Decisão: Centralizar ações de UI (click, set, select, reload, screenShot) em helpers/actions.js.
 
-Motivo: Evitar a repetição de código e facilitar a reutilização e manutenção dos scripts de teste.
+Motivo: Padronizar waits e interações básicas.
+
+### Constantes
+
+Decisão: Centralizar valores fixos e informações utilizadas em diferentes cenários de teste.
+
+Motivo: Evitar valores duplicados no código e facilitar a manutenção e alteração dessas informações.
+
+### Services
+
+Decisão: Encapsular chamadas ao backend (Supabase) em services: token, atividades e responsáveis.
+
+Motivo: Separar a API dos testes de UI. Permite criar/alterar/excluir dados sem depender de outro cenário de interface (principalmente no resumo).
+
+### Hooks de pré-condição
+
+Decisão: Login, visita à URL e carga de responsável/atividades em hooks reutilizáveis.
+
+Motivo: Evitar repetir autenticação e setup em cada spec. O login na UI espera as APIs de atividades e responsáveis (cy.intercept + cy.wait).
 
 ### Variáveis de ambiente
 
-Decisão: Gerenciar dados específicos do ambiente.
+Decisão: Credenciais e URLs por ambiente em cypress.env.json, carregadas pela chave version (dev) e expostas em Cypress.expose().
 
-Motivo: Gerenciar massas de dados referente ao ambiente utilizado.
+Motivo: Não versionar dados de ambiente no código e permitir trocar URL/credenciais sem alterar specs.
 
 ### ESLint
 
@@ -163,9 +225,9 @@ Motivo: Identificar possíveis problemas de código, más práticas e inconsist�
 
 ### Mochawesome
 
-Decisão: Utilizar o Mochawesome para gerar relatórios das execuções dos testes automatizados.
+Decisão: Relatório HTML com screenshots embutidos após o run headless.
 
-Motivo: Disponibilizar uma evidência dos testes realizados e facilitar a análise dos resultados na etapa final do processo de testes de software.
+Motivo: Evidência da execução para análise dos resultados.
 
 ---
 #### Relatórios
