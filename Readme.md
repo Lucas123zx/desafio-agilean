@@ -3,15 +3,17 @@
 
 #### Padrão de projeto POM:
 
-1. POM (Page Object Model Patterns)
+1. POM (Page Object Model)
   - Foi utilizado o padrão Page Object Model (POM) para organizar e separar as responsabilidades da automação
-  Referencia: https://www.browserstack.com/guide/cypress-page-object-model
+  Referência: https://www.browserstack.com/guide/cypress-page-object-model
   
-2. Padrão AAA: Arrange, Act, Assert 
+1. Padrão AAA: Arrange, Act, Assert 
   - Os testes foram estruturados seguindo o padrão AAA (Arrange, Act, Assert):
     - Arrange: preparação do cenário e dos dados necessários para o teste; 
-    - Act: execução da ação que será testada;
+    - Act: execução das ações que serão testada;
     - Assert: validação do resultado esperado.
+
+  - Cada cenário possui uma finalidade específica e segue, sempre que possível, a estrutura padrão AAA.
 
 #### Ferramentas:
 1. [nodeJs](https://nodejs.org/pt/download) 
@@ -25,8 +27,8 @@
   >
   > No modo headless pode ocorrer erro ao executar no Electron (Depreciado). 
 
-#### Pré-requsiitos: 
-1. Browser instalado Mozila Firefox ou Google Chrome.
+#### Pré-requisitos: 
+1. Browser instalado Mozilla Firefox ou Google Chrome.
 2. Node.js instalado
 3. Git instalado
 
@@ -45,7 +47,7 @@ Ou caso possua chave SSH configurada:
    - Copiar chaves e valores do `cypress.env.example.json` para o arquivo `cypress.env.json`
   
   > [!Warning]
-  > Será necessário ter a "chaves" e "valores" no arquivo cypress.env.json. 
+  > Será necessário configurar as chaves e os valores necessários no arquivo `cypress.env.json`. 
    
 6. Instalar dependenias. 
   Na pasta raiz do projeto abra o terminal e execute o comando:
@@ -56,7 +58,7 @@ Ou caso possua chave SSH configurada:
 #### Execução:
 
   > [!Note]
-  > O projeto possui ESLint configurado para identificar possíveis más práticas e problemas de padronização no código..
+  > O projeto possui ESLint configurado para identificar possíveis más práticas e problemas de padronização no código.
 
     $ npm run code:verify
      
@@ -96,24 +98,79 @@ Ou caso possua chave SSH configurada:
         > npx eslint .
 
 ---
-#### Estrutura dos cenários 
-  - Cada cenário possui uma finalidade específica e segue, sempre que possível, a estrutura:
-  - Preparação → Ação → Validação
-    - quais condições são necessárias para iniciar o teste;
-    - qual ação está sendo executada;
-    - qual comportamento é esperado;
-    - qual resultado deve ser validado.
+## Cenários automatizados
 
+- CT[01] - Nome do cenário
+  - Descrição do que o cenário valida.
+
+- CT[02] - Nome do cenário
+  - Descrição do que o cenário valida.
+
+- CT[03] - Nome do cenário
+  - Descrição do que o cenário valida.
+ 
+  
+---
+## Decisões técnicas
+
+### POM — Page Object Model
+
+Decisão: Utilizar o padrão Page Object Model para organizar os testes.
+
+Motivo: Separar a lógica de interação com a aplicação dos cenários de teste, facilitando a manutenção e evitando duplicação de código.
+
+### Componentes reutilizáveis
+
+Decisão: Criar classes/componentes específicos para os modais da aplicação, como ModalActivity, ModalResponsability e ModalAuth..
+
+Motivo: Centralizar as interações e validações relacionadas a cada modal, permitindo que os métodos sejam reutilizados por diferentes cenários.
+
+### Padrão AAA
+
+Decisão: Utilizar o padrão AAA para estruturar os testes, mantendo uma separação clara entre preparação, execução e validação.
+
+Motivo: Organiza os teste de forma clara e estruturada, facilitando a compreesã do que o teste precisa para ser executado, quais ações serão realizadas e quais resultados serão validados
+
+### Geração de dados
+
+Decisão: Utilizar funções para geração dinâmica dos dados de teste.
+
+Motivo: Evitar valores fixos nos cenários e reduzir a possibilidade de conflitos entre execuções, além de facilitar a reutilização dos dados.
+
+### Criação de métodos reutilizáveis
+
+Decisão: Criar métodos reutilizáveis para as validações realizadas com frequência.
+
+Motivo: Evitar a repetição de comandos Cypress nos cenários e facilitar a manutenção das validações.
+
+### Helpers
+
+Decisão: Criar funções auxiliares para centralizar ações básicas e recorrentes realizadas nos elementos da aplicação
+
+Motivo: Evitar a repetição de código e facilitar a reutilização e manutenção dos scripts de teste.
+
+### Variáveis de ambiente
+
+Decisão: Gerenciar dados específicos do ambiente.
+
+Motivo: Gerenciar massas de dados referente ao ambiente utilizado.
+
+### ESLint
+
+Decisão: Utilizar o ESLint para padronizar e analisar estaticamente o código antes da execução dos testes.
+
+Motivo: Identificar possíveis problemas de código, más práticas e inconsistências de padronização, mantendo o projeto mais organizado e consistente.
+
+### Mochawesome
+
+Decisão: Utilizar o Mochawesome para gerar relatórios das execuções dos testes automatizados.
+
+Motivo: Disponibilizar uma evidência dos testes realizados e facilitar a análise dos resultados na etapa final do processo de testes de software.
 
 ---
-#### Cenários automatizados
+#### Relatórios
 
-
-
----
-#### Reports
-
-1. No modo headless após a execução deverá ser gerado reports:
+1. No modo headless após a execução deverá ser gerado o relatório:
 
         ├── cypress/
         │   ├── reports/
