@@ -35,7 +35,7 @@ describe('Register responsability', () => {
       ModalActivity.validateShowNameResponsability({ label: responsability.name });
     });
 
-    it('CT[13] - Validar cadastro de atividade informando no campo "Atividade" valor com 50 caracteres', () => {
+    it('CT[13] - Validar cadastro de responsável informando no campo "Nome" valor com 50 caracteres', () => {
       const responsability = generateReponsability();
       responsability.name = 'D'.repeat(50);
 
@@ -44,7 +44,7 @@ describe('Register responsability', () => {
       ModalActivity.validateShowNameResponsability({ label: responsability.name });
     });
 
-    it('CT[14] - Validar cadastro de atividade informando no campo "Atividade" valor com 49 caracteres', () => {
+    it('CT[14] - Validar cadastro de responsável informando no campo "Nome" valor com 49 caracteres', () => {
       const responsability = generateReponsability();
       responsability.name = 'Z'.repeat(49);
 
