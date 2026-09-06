@@ -6,6 +6,7 @@ import { generateReponsability } from '../utils/gen-responsability';
 
 export let responsability;
 export let activitiesTotal;
+export let user;
 
 beforeEach('Get responsabilities and get total activities', () => {
   TokenServices.postLogin(credential).then((response) => {
@@ -17,6 +18,7 @@ beforeEach('Get responsabilities and get total activities', () => {
       telefone: datasNewResponsability.phone,
       user_id: datasUser.user.id
     }; 
+    user = datasUser;
 
     ResponsabilityService.verifyHasResposanbility(datasUser, newResponsability)
     .then((datasResponsability) => {
@@ -26,5 +28,6 @@ beforeEach('Get responsabilities and get total activities', () => {
     ActivityServices.getActivities(datasUser).then((res) => {
       activitiesTotal = res.body;
     });
+
   });
 });

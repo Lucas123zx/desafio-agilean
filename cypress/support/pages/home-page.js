@@ -1,4 +1,5 @@
 import { homeElements } from '../elements/home-elements';
+import { modalActions } from '../elements/modals';
 import { click, getEl } from '../helpers/actions';
 
 class HomePage { 
@@ -8,7 +9,24 @@ class HomePage {
   }
 
   listActivites() {
-    return cy.get(homeElements.trLinhaActivity);
+    return cy.get(homeElements.trListActivities);
+  }
+
+  changeStatusActivity(datas) {
+    getEl(homeElements.slcStatusActivity)
+      .last()
+      .select(datas.status);
+  }
+
+  deleteActivity() {
+    getEl(homeElements.btnActionActivity)
+      .last()
+      .should('be.visible')
+      .click();
+    
+    getEl(modalActions.btnDeleteActivity)
+      .should('be.visible')
+      .click();
   }
 
   validateActivity(datas) {
@@ -63,7 +81,7 @@ class HomePage {
       .should('be.visible')
       .find('.recharts-bar-rectangle')
       .eq(indice)
-      .trigger('mouseover', { force: true });
+      .trigger('mouseover');
 
     getEl('.recharts-tooltip-item') 
       .should('be.visible')

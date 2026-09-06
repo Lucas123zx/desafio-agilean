@@ -11,6 +11,12 @@ import { credential } from '../support/config/credential';
 
 describe('Register activity', () => {
   const date = new Date();
+  let datasActivity = {
+    status: statusActivity.inProgress,
+    priority: priorityActivity.low,
+    activity: generateNameActivity(),
+    date: converteDate(date.setDate(date.getDate() + 1))
+  };
 
   beforeEach('Modal register activity is open', () => {
     HomePage.clickBtnRegisterActivity();
@@ -23,102 +29,89 @@ describe('Register activity', () => {
   describe('Register activities with "Success"', () => {
 
     it('CT[01] - Validar cadastro de atividade com dados válidos', () => {
-      const datasActivity = {
+      let activityValid = {
+        ...datasActivity,
         total: activitiesTotal.length + 1,
-        status: statusActivity.inProgress,
-        priority: priorityActivity.low,
-        activity: generateNameActivity(),
-        responsability: responsability,
-        date: converteDate(date.setDate(date.getDate() + 1))
+        responsability: responsability
       };
 
-      ModalActivity.registerActivity(datasActivity);
+      ModalActivity.registerActivity(activityValid);
 
-      HomePage.validateActivity(datasActivity);
+      HomePage.validateActivity(activityValid);
     });
 
     it('CT[02] - Validar cadastro de atividade informando prazo menor que data atual.', () => {
       const txtAtrasada = 'Atrasada';
-      const datasActivity = {
+      let activityLate = {
         total: activitiesTotal.length + 1,
-        status: statusActivity.inProgress,
-        priority: priorityActivity.low,
-        activity: generateNameActivity(),
+        ...datasActivity,
         responsability: responsability,
         date: converteDate(date.setDate(date.getDate() - 1))
       };
 
-      ModalActivity.registerActivity(datasActivity);
+      ModalActivity.registerActivity(activityLate);
 
-      HomePage.validateActivityLate(datasActivity, txtAtrasada);
+      HomePage.validateActivityLate(activityLate, txtAtrasada);
     });
 
     it('CT[03] - Validar cadastro de atividade informando prazo igual a data atual.', () => {
-      const datasActivity = {
+      let activityToday = {
         total: activitiesTotal.length + 1,
-        status: statusActivity.inProgress,
-        priority: priorityActivity.low,
-        activity: generateNameActivity(),
         responsability: responsability,
+        ...datasActivity,
         date: converteDate(date)
       };
 
-      ModalActivity.registerActivity(datasActivity);
+      ModalActivity.registerActivity(activityToday);
 
-      HomePage.validateActivity(datasActivity);
+      HomePage.validateActivity(activityToday);
     });
 
     it('CT[04] - Validar cadastro de atividade informando no campo "Atividade" valor com 51 caracteres', () => {
-      const datasActivity = {
+      let activityNameExtension = {
         total: activitiesTotal.length + 1,
-        status: statusActivity.inProgress,
-        priority: priorityActivity.low,
-        activity: 'A'.repeat(51),
+        ...datasActivity,
         responsability: responsability,
-        date: converteDate(date.setDate(date.getDate() + 1))
+        activity: 'A'.repeat(51),
       };
 
-      ModalActivity.registerActivity(datasActivity);
+      ModalActivity.registerActivity(activityNameExtension);
       //front-end maxLength 50, input "Atividade"
-      datasActivity.activity = datasActivity.activity.substring(0, 50);
-      
-      HomePage.validateActivity(datasActivity);
+      activityNameExtension.activity = activityNameExtension.activity.substring(0, 50);
+
+      HomePage.validateActivity(activityNameExtension);
     });
 
     it('CT[05] - Validar cadastro de atividade informando no campo "Atividade" valor com 50 caracteres', () => {
-      const datasActivity = {
+      let activityNameMax = {
         total: activitiesTotal.length + 1,
-        status: statusActivity.inProgress,
-        priority: priorityActivity.low,
-        activity: 'B'.repeat(50),
+        ...datasActivity,
         responsability: responsability,
-        date: converteDate(date.setDate(date.getDate() + 1))
+        activity: 'B'.repeat(50),
       };
 
-      ModalActivity.registerActivity(datasActivity);
-      
-      HomePage.validateActivity(datasActivity);
+      ModalActivity.registerActivity(activityNameMax);
+
+      HomePage.validateActivity(activityNameMax);
     });
 
     it('CT[06] - Validar cadastro de atividade informando no campo "Atividade" valor com 49 caracteres', () => {
-      const datasActivity = {
+      let activityNameRegular = {
         total: activitiesTotal.length + 1,
-        status: statusActivity.inProgress,
-        priority: priorityActivity.low,
-        activity: 'D'.repeat(49),
+        ...datasActivity,
         responsability: responsability,
-        date: converteDate(date.setDate(date.getDate() + 1))
+        activity: 'D'.repeat(49),
       };
 
-      ModalActivity.registerActivity(datasActivity);
-      
-      HomePage.validateActivity(datasActivity);
+      ModalActivity.registerActivity(activityNameRegular);
+
+      HomePage.validateActivity(activityNameRegular);
     });
 
   });
 
   describe('Register activities with "Error"', () => {
-    
+
     it('CT[07] - Validar mensagem de "obrigatoriedade" ao cadastrar atividade sem informar campos obrigatórios', () => {
       const mensagens = {
         name: 'Atividade é obrigatória',
@@ -127,21 +120,21 @@ describe('Register activity', () => {
       };
 
       ModalActivity.clickBtnRegisterActivity();
-      
+
       ModalActivity.validateShowMensagensError(mensagens);
     });
-  
+
   });
 
   describe('Modal activity interface', () => {
 
     it('CT[08] - Validar exibição de contador de caracteres em campo "atividade"', () => {
       const textCount = '0/50';
-      
+
       ModalActivity.validateShowCountCaracters(textCount);
     });
 
-    it('CT[09] - Validar o cancelamento ao cadastrar Atividade', () => {      
+    it('CT[09] - Validar o cancelamento ao cadastrar Atividade', () => {
       const email = credential.email;
 
       ModalActivity.clickBtnCancelActivity();
@@ -149,7 +142,7 @@ describe('Register activity', () => {
       HomePage.validateHome(email);
     });
 
-    it('CT[10] - Validar o fechamento da modal de cadastro de Atividade', () => {      
+    it('CT[10] - Validar o fechamento da modal de cadastro de Atividade', () => {
       const email = credential.email;
 
       ModalActivity.clickBtnCloseActivity();

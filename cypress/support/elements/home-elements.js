@@ -9,6 +9,9 @@ export const homeElements = {
   divCardSummaryPending: '[data-cy="card-pendentes"]',
   divCardSummaryLate: '[data-cy="card-atrasadas"]',
   divGraphActivity: '[data-cy="graph-atividades"]',
-  trLinhaActivity: '[data-cy^="linha-atividade-"]',
+  slcStatusActivity: '[data-cy^="status-dropdown-"]',
+  trListActivities: '[data-cy^="linha-atividade-"]',
+  spnStatusActivity: '[data-cy^="badge-status-"]',
+  btnActionActivity: '[data-cy^="atividade-"]',
   divListEmpty: '[data-cy="tabela-vazia"]'
 };

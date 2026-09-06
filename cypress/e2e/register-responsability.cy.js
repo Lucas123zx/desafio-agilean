@@ -19,59 +19,58 @@ describe('Register responsability', () => {
   describe('Register resposability with "Success"', () => {
 
     it('CT[11] - Validar cadastro de responsável com dados válidos', () => {
-      const responsability = generateReponsability();
+      const responsabilityValid = generateReponsability();
 
-      ModalResponsability.registerResponsability(responsability);
+      ModalResponsability.registerResponsability(responsabilityValid);
 
-      ModalActivity.validateShowNameResponsability({ label: responsability.name });
+      ModalActivity.validateShowNameResponsability({ label: responsabilityValid.name });
     });
 
     it('CT[12] - Validar cadastro de responsável informando no campo "Nome" valor maior que 51 caracteres', () => {
-      const responsability = generateReponsability();
-      responsability.name = 'A'.repeat(51);
+      const responsabilityNameExtension = { ...generateReponsability(), name: 'A'.repeat(51) };
 
-      ModalResponsability.registerResponsability(responsability);
+      ModalResponsability.registerResponsability(responsabilityNameExtension);
 
-      ModalActivity.validateShowNameResponsability({ label: responsability.name });
+      ModalActivity.validateShowNameResponsability(
+        { label: responsabilityNameExtension.name }
+      );
     });
 
     it('CT[13] - Validar cadastro de responsável informando no campo "Nome" valor com 50 caracteres', () => {
-      const responsability = generateReponsability();
-      responsability.name = 'D'.repeat(50);
+      const responsabilityNameMax = { ...generateReponsability(), name: 'D'.repeat(50) };
 
-      ModalResponsability.registerResponsability(responsability);
+      ModalResponsability.registerResponsability(responsabilityNameMax);
 
-      ModalActivity.validateShowNameResponsability({ label: responsability.name });
+      ModalActivity.validateShowNameResponsability({ label: responsabilityNameMax.name });
     });
 
     it('CT[14] - Validar cadastro de responsável informando no campo "Nome" valor com 49 caracteres', () => {
-      const responsability = generateReponsability();
-      responsability.name = 'Z'.repeat(49);
+      const responsabilityNameRegular = { ...generateReponsability(), name: 'Z'.repeat(49) };
 
-      ModalResponsability.registerResponsability(responsability);
+      ModalResponsability.registerResponsability(responsabilityNameRegular);
 
-      ModalActivity.validateShowNameResponsability({ label: responsability.name });
+      ModalActivity.validateShowNameResponsability(
+        { label: responsabilityNameRegular.name }
+      );
     });
-  
+
   });
 
-  describe('Register resposability with "Error"', () => { 
+  describe('Register resposability with "Error"', () => {
     const msgEmailInvalid = 'E-mail inválido';
 
     it('CT[15] - Validar mensagem de "Email inválido" ao cadastrar responsável informando no campo "Email" email inválido', () => {
-      const responsability = generateReponsability();
-      responsability.email = 'teste@.com';
+      const responsabilityEmailInvalid = { ...generateReponsability(), email: 'teste@.com' };
 
-      ModalResponsability.registerResponsability(responsability);
+      ModalResponsability.registerResponsability(responsabilityEmailInvalid);
 
       ModalResponsability.validateShowMensagenErrorEmail(msgEmailInvalid);
     });
 
     it('CT[16] - Validar mesagem de "Email inválido" ao cadastrar responsável informando no campo "Email" email com  "espaço"', () => {
-      const responsability = generateReponsability();
-      responsability.email = 'teste@ .com';
+      const responsabilityEmailInvalid = { ...generateReponsability(), email: 'teste@ .com' };
 
-      ModalResponsability.registerResponsability(responsability);
+      ModalResponsability.registerResponsability(responsabilityEmailInvalid);
 
       ModalResponsability.validateShowMensagenErrorEmail(msgEmailInvalid);
     });
@@ -89,17 +88,16 @@ describe('Register responsability', () => {
     });
 
     it('CT[21] - Validar mensagem "Telefone inválido" ao cadastrar responsável informando "85" no campo telefone', () => {
-      const responsabilities = generateReponsability();
-      responsabilities.phone = '85';
+      const responsabilitiesPhoneInvalid = { ...generateReponsability(), phone: '85' };
 
-      ModalResponsability.registerResponsability(responsabilities);
+      ModalResponsability.registerResponsability(responsabilitiesPhoneInvalid);
 
       ModalResponsability.validateShowMensagenErrorPhone('Telefone inválido');
     });
 
   });
 
-  describe('Modal register responsability "interface"', () => { 
+  describe('Modal register responsability "interface"', () => {
 
     it('CT[19] - Validar o cancelamento ao cadastrar Responsável', () => {
       const txt = 'Cadastrar Atividade';

@@ -41,3 +41,18 @@ export const modalResponsabilityElements = {
   pErrorNameResponsability: '[data-cy="modal-responsavel-erro-nome"]',
   pErrorPhoneResponsability: '[data-cy="modal-responsavel-erro-telefone"]'
 };
+
+export const modalRejectElements = {
+  divModalReject: '[data-cy="modal-rejeicao"]',
+  bntCloseModalReject: '[data-cy="modal-rejeicao-btn-fechar"]',
+  txtMotionReject: '[data-cy="modal-rejeicao-motivo"]', 
+  btnCancelReject: '[data-cy="modal-rejeicao-btn-cancelar"]',
+  btnConfirmReject: '[data-cy="modal-rejeicao-btn-confirmar"]',
+  pErrorMotionReject: '[data-cy="modal-rejeicao-erro"]'
+};
+
+export const modalActions = {
+  btnEditActivity: '[data-cy="atividade-200-btn-editar"]',
+  btnDuplicatedActivity: '[data-cy="atividade-200-btn-duplicar"]',
+  btnDeleteActivity: '[data-cy="atividade-200-btn-excluir"]'
+};

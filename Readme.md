@@ -203,7 +203,7 @@ Motivo: Evitar valores duplicados no código e facilitar a manutenção e altera
 
 Decisão: Encapsular chamadas ao backend (Supabase) em services: token, atividades e responsáveis.
 
-Motivo: Separar a API dos testes de UI. Permite criar/alterar/excluir dados sem depender de outro cenário de interface (principalmente no resumo).
+Motivo: Separar a API dos testes de UI. Permite obter dados sem depender de outro cenário de interface.
 
 ### Hooks de pré-condição
 

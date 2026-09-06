@@ -19,48 +19,6 @@ class ActivityService {
     );
   }
 
-  createActivity(body, datas) {
-    return cy.request(
-      { 
-        method: ApiTemplate.Method.POST,
-        url: `${this.url}?select=*`,
-        headers: {
-          Authorization: `Bearer ${datas.access_token}`,
-          Prefer: 'return=representation',
-          'apikey': Cypress.expose('supabaseKey'),
-        },
-        body: body
-      }
-    );
-  }
-
-  pathActivity(body, datas, id) {
-    return cy.request(
-      { 
-        method: ApiTemplate.Method.PATCH,
-        url: `${this.url}?id=eq.${id}`,
-        headers: {
-          Authorization: `Bearer ${datas.access_token}`,
-          'apikey': Cypress.expose('supabaseKey'),
-        },
-        body: body
-      }
-    );
-  }
-
-  deleteActivity(body, datas) {
-    return cy.request(
-      { 
-        method: ApiTemplate.Method.DELETE,
-        url: `${this.url}?id=eq.${body.id}`,
-        headers: {
-          Authorization: `Bearer ${datas.access_token}`,
-          'apikey': Cypress.expose('supabaseKey'),
-        },
-      }
-    );
-  }
-
 }
 
 export default new ActivityService();
