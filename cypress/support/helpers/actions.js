@@ -117,8 +117,16 @@ function screenShot() {
   }
 }   
 
+function reload() {
+  try {
+    cy.reload();
+  } catch (error) {
+    cy.log('Exceção capturada: ' + error.message);
+  }
+}
+
 export {
   set, click, waitElement, waitElementIndex, clickIndex, check,
   clear, getText, scrollTo, select, waitElementEnable, 
-  clickElementEnabled, screenShot, getEl
+  clickElementEnabled, screenShot, getEl, reload
 };

@@ -31,21 +31,21 @@ class ModalActivity {
   validateShowMensagensError(texts) {
     getEl(modalActivityElements.pErroNameActivity)
       .should('be.visible')
-      .and('contain.text', texts.name);
+      .and('have.text', texts.name);
 
     getEl(modalActivityElements.pErroReponsabilityActivity)
       .should('be.visible')
-      .and('contain.text', texts.responsability);
+      .and('have.text', texts.responsability);
 
     getEl(modalActivityElements.pErroTermActivity)
       .should('be.visible')
-      .and('contain.text', texts.term);
+      .and('have.text', texts.term);
   }
 
   validateShowCountCaracters(text) {
     getEl(modalActivityElements.pCountActivity)
       .should('be.visible')
-      .and('contain.text', text);
+      .and('have.text', text);
   }
 
   validateShowNameResponsability(datas) {

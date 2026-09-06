@@ -13,11 +13,11 @@ class HomePage {
 
   validateActivity(datas) {
     this.listActivites().last().within(($tr) => {
-      cy.contains(datas.total).should('be.visible');
-      cy.contains(datas.activity).should('be.visible');
-      cy.contains(datas.responsability.nome).should('be.visible');
-      cy.contains(datas.priority).should('be.visible');
-      cy.contains(datas.status).should('be.visible');
+      cy.contains(datas.total).should('be.visible').and('have.text', datas.total);
+      cy.contains(datas.activity).should('be.visible').and('have.text', datas.activity);
+      cy.contains(datas.responsability.nome).should('be.visible').and('have.text', datas.responsability.nome);
+      cy.contains(datas.priority).should('be.visible').and('have.text', datas.priority);
+      cy.contains(datas.status).should('be.visible').and('have.text', datas.status);
     });
   }
 
@@ -26,10 +26,54 @@ class HomePage {
     cy.contains(text).should('be.visible');
   }
 
+  validateCountSummaryRegisters(total) {
+    getEl(homeElements.divCardSummaryRegister)
+    .should('be.visible')
+    .find('p')
+    .eq(1)
+    .and('have.text', total);
+  }
+
+  validateCountSummaryResolved(total) {
+    getEl(homeElements.divCardSummaryResolved)
+    .should('be.visible')
+    .find('p')
+    .eq(1)
+    .and('have.text', total);
+  }
+
+  validateCountSummaryPeding(total){
+    getEl(homeElements.divCardSummaryPending)
+    .should('be.visible')
+    .find('p')
+    .eq(1)
+    .and('have.text', total);
+  }
+
+  validateCountSummaryLate(total){
+    getEl(homeElements.divCardSummaryLate)
+    .should('be.visible')
+    .find('p')
+    .eq(1)
+    .and('have.text', total);
+  }
+
+  validaPercentilTotal(total, indice) {
+    getEl('[data-cy="grafico-atividades"]')
+      .should('be.visible')
+      .find('.recharts-bar-rectangle')
+      .eq(indice)
+      .trigger('mouseover', { force: true });
+
+    getEl('.recharts-tooltip-item') 
+      .should('be.visible')
+      .and('contain.text', `${total}%`);
+  }
+
   validateHome(email) {
     this.listActivites().should('be.visible');
     getEl(homeElements.h1AppTitle).should('be.visible');
-    getEl(homeElements.spnEmailUser).should('be.visible').and('contain.text', email);
+    getEl(homeElements.spnEmailUser).should('be.visible').and('have.text', email);
     getEl(homeElements.divCardSummaryLate).should('be.visible');
     getEl(homeElements.divCardSummaryPending).should('be.visible');
     getEl(homeElements.divCardSummaryRegister).should('be.visible');

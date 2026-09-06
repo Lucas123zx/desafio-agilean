@@ -1,6 +1,8 @@
 export const statusActivity = {
   notStarted: 'Não Iniciada',
-  inProgress: 'Em Andamento'
+  inProgress: 'Em Andamento',
+  resolved: 'Resolvida',
+  rejected: 'Rejeitada'
 };
 
 export const priorityActivity = {

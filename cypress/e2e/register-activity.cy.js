@@ -24,7 +24,7 @@ describe('Register activity', () => {
 
     it('CT[01] - Validar cadastro de atividade com dados válidos', () => {
       const datasActivity = {
-        total: activitiesTotal + 1,
+        total: activitiesTotal.length + 1,
         status: statusActivity.inProgress,
         priority: priorityActivity.low,
         activity: generateNameActivity(),
@@ -40,7 +40,7 @@ describe('Register activity', () => {
     it('CT[02] - Validar cadastro de atividade informando prazo menor que data atual.', () => {
       const txtAtrasada = 'Atrasada';
       const datasActivity = {
-        total: activitiesTotal + 1,
+        total: activitiesTotal.length + 1,
         status: statusActivity.inProgress,
         priority: priorityActivity.low,
         activity: generateNameActivity(),
@@ -55,7 +55,7 @@ describe('Register activity', () => {
 
     it('CT[03] - Validar cadastro de atividade informando prazo igual a data atual.', () => {
       const datasActivity = {
-        total: activitiesTotal + 1,
+        total: activitiesTotal.length + 1,
         status: statusActivity.inProgress,
         priority: priorityActivity.low,
         activity: generateNameActivity(),
@@ -70,7 +70,7 @@ describe('Register activity', () => {
 
     it('CT[04] - Validar cadastro de atividade informando no campo "Atividade" valor com 51 caracteres', () => {
       const datasActivity = {
-        total: activitiesTotal + 1,
+        total: activitiesTotal.length + 1,
         status: statusActivity.inProgress,
         priority: priorityActivity.low,
         activity: 'A'.repeat(51),
@@ -87,7 +87,7 @@ describe('Register activity', () => {
 
     it('CT[05] - Validar cadastro de atividade informando no campo "Atividade" valor com 50 caracteres', () => {
       const datasActivity = {
-        total: activitiesTotal + 1,
+        total: activitiesTotal.length + 1,
         status: statusActivity.inProgress,
         priority: priorityActivity.low,
         activity: 'B'.repeat(50),
@@ -102,7 +102,7 @@ describe('Register activity', () => {
 
     it('CT[06] - Validar cadastro de atividade informando no campo "Atividade" valor com 49 caracteres', () => {
       const datasActivity = {
-        total: activitiesTotal + 1,
+        total: activitiesTotal.length + 1,
         status: statusActivity.inProgress,
         priority: priorityActivity.low,
         activity: 'D'.repeat(49),

@@ -3,12 +3,17 @@ import ModalResponsability from '../support/components/modal-responsability';
 import { generateReponsability } from '../support/utils/gen-responsability';
 import ModalActivity from '../support/components/modal-activity';
 import HomePage from '../support/pages/home-page';
+import { screenShot } from '../support/helpers/actions';
 
 describe('Register responsability', () => {
 
   beforeEach('Modal register responsability is open', () => {
     HomePage.clickBtnRegisterActivity();
     ModalActivity.clickBtnAddReponsability();
+  });
+
+  afterEach('screenshot', () => {
+    screenShot();
   });
 
   describe('Register resposability with "Success"', () => {

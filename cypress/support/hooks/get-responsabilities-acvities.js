@@ -24,7 +24,7 @@ beforeEach('Get responsabilities and get total activities', () => {
     });
 
     ActivityServices.getActivities(datasUser).then((res) => {
-      activitiesTotal = res.body.length;
+      activitiesTotal = res.body;
     });
   });
 });

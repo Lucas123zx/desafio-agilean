@@ -6,5 +6,11 @@ beforeEach('Access page', () => {
 });
 
 beforeEach('Login', () => {
+  cy.intercept('GET', '**/rest/v1/atividades*').as('getActivities');
+  cy.intercept('GET', '**/rest/v1/responsaveis*').as('getResponsabilities');
+
   ModalAuth.loginUser(credential.email, credential.password);
+
+  cy.wait('@getActivities');
+  cy.wait('@getResponsabilities');
 });
