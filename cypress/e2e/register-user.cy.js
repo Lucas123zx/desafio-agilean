@@ -2,12 +2,17 @@ import ModalAuth from '../support/components/modal-auth';
 import HomePage from '../support/pages/home-page';
 import { generateUser } from '../support/utils/gen-user';
 import UserServices from '../support/services/user-services';
+import { screenShot } from '../support/helpers/actions';
 
 describe('Register user', () => {
 
   beforeEach('Access page', () => {
     cy.visit(Cypress.expose('url'));
     ModalAuth.clickBtnAbaRegister();
+  });
+
+  afterEach('screenshot', () => {
+    screenShot();
   });
   
   describe('Register user with "Success"', () => {
