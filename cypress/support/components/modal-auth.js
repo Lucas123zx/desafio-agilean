@@ -33,6 +33,13 @@ class ModalAuth {
     .and('have.text', msg);
   }
 
+  validateShowModalAuth(title) {
+    getEl(modalLoginElements.divModalLogin)
+      .should('be.visible')
+      .and('contain.text', title);
+
+  }
+
 }
 
 export default new ModalAuth();

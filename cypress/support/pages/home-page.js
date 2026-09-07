@@ -18,6 +18,10 @@ class HomePage {
       .select(datas.status);
   }
 
+  clickBtnLogout() {
+    click(homeElements.btnLogout);
+  }
+
   deleteActivity() {
     getEl(homeElements.btnActionActivity)
       .last()

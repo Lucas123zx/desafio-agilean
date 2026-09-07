@@ -166,6 +166,11 @@ Cadastro de usuário (register-user.cy.js)
 - CT[63] - Cadastrar usuário informando email vinculado a outro.
 
 
+Logout do sistema (logout.cy.js)
+
+- CT[64] - Validar logout do sistema
+
+
 
 ---
 ## Decisões técnicas

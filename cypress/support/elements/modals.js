@@ -7,6 +7,7 @@ export const modalRegisterElements = {
 };
 
 export const modalLoginElements = {
+  divModalLogin: '[data-cy="modal-auth"]',
   btnAbaEnter: '[data-cy="aba-entrar"]',
   btnAbaRegister: '[data-cy="aba-cadastrar"]',
   inpEmail: '[data-cy="input-email-login"]',
