@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-function generateName() {
+export function generateName() {
   let name = faker.person.firstName().replace(/[^a-zA-Z0-9]/g, '');
   let lastName = faker.person.lastName().replace(/[^a-zA-Z0-9]/g, '');
 
@@ -15,7 +15,7 @@ function generatePhoneNumber() {
   return phone;
 }
 
-function generateEmail(name, lastName) {  
+export function generateEmail(name, lastName) {  
   const email = `${name}-${lastName}@tuamaeaquelaursa.com`;
   
   return email.toLocaleLowerCase();

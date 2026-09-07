@@ -1,5 +1,6 @@
 export const ApiRecourses = {
   reponsability: 'responsaveis',
   token: 'token',
-  activity: 'atividades'
+  activity: 'atividades',
+  signup: 'signup'
 };

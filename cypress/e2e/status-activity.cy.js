@@ -66,7 +66,7 @@ describe('Status activity', () => {
       HomePage.validateActivity({ ...activity, status: statusActivity.inProgress });
     });
 
-    it('CT[40] - Validar alteração de Status de Atividade para "Em Andamento"', () => {
+    it('CT[40] - Validar alteração de Status de Atividade para "Resolvida"', () => {
       const activity = {
         ...datasActivity,
         total: activitiesTotal.length + 1,

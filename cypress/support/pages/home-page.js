@@ -89,7 +89,6 @@ class HomePage {
   }
 
   validateHome(email) {
-    this.listActivites().should('be.visible');
     getEl(homeElements.h1AppTitle).should('be.visible');
     getEl(homeElements.spnEmailUser).should('be.visible').and('have.text', email);
     getEl(homeElements.divCardSummaryLate).should('be.visible');

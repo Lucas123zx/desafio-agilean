@@ -129,7 +129,6 @@ Cadastro de responsável (register-responsability.cy.js)
 
 
 Resumo e gráfico (summary.cy.js)
-Estes cenários preparam o estado pela API (criar/alterar/excluir atividade) e validam o resumo na UI.
 
 - CT[22] - Incremento de Cadastradas após criar atividade
 - CT[23] - Decremento de Cadastradas após excluir
@@ -145,6 +144,28 @@ Estes cenários preparam o estado pela API (criar/alterar/excluir atividade) e v
 - CT[35] - Decremento de Pendentes (Não Iniciada)
 - CT[36] - Decremento de Pendentes (Em Andamento)
 - CT[37] - Decremento de Atrasadas após excluir expirada
+
+
+Alteração de status em atividade (status-activity.cy.js)
+
+- CT[38] - Validar alteração de Status de Atividade para "Não Iniciada"
+- CT[39] - Validar alteração de Status de Atividade para "Em Andamento"
+- CT[40] - Validar alteração de Status de Atividade para "Resolvida"
+- CT[41] - Validar alteração de Status de Atividade para "Rejeitada"
+- CT[43] - Validar mensagem de campo "obrigatório" ao rejeitar atividade sem informar motivo
+
+Cadastro de usuário (register-user.cy.js)
+
+- CT[56] - Cadastrar usuário com dados válidos
+- CT[57] - Cadastrar usuário sem infomar campos obrigatórios
+- CT[58] - Cadastrar usuário informando email inválido
+- CT[59] - Cadastrar usuário informando "valor" de senha menor quer 6 caracteres
+- CT[60] - Cadastrar usuário informando "valor" de senha igual a 6 caracteres
+- CT[61] - Cadastrar usuário informando "valor" de senha maior a 6 caracteres
+- CT[62] - Cadastrar usuário sem informar o campo senha
+- CT[63] - Cadastrar usuário informando email vinculado a outro.
+
+
 
 ---
 ## Decisões técnicas
@@ -201,9 +222,9 @@ Motivo: Evitar valores duplicados no código e facilitar a manutenção e altera
 
 ### Services
 
-Decisão: Encapsular chamadas ao backend (Supabase) em services: token, atividades e responsáveis.
+Decisão: Encapsular chamadas ao backend (Supabase) em services: token, atividades, responsáveis e usuários.
 
-Motivo: Separar a API dos testes de UI. Permite obter dados sem depender de outro cenário de interface.
+Motivo: Separar a API dos testes de UI. Permite obter/criar dados sem depender de outro cenário de interface.
 
 ### Hooks de pré-condição
 

@@ -3,13 +3,16 @@ export const modalRegisterElements = {
   inpEmail: '[data-cy="input-email-cadastro"]',
   inpPassword: '[data-cy="input-senha-cadastro"]',
   bntRegister: '[data-cy="btn-cadastrar"]',
+  pErrorRegister: '[data-cy="auth-erro"]'
 };
 
 export const modalLoginElements = {
   btnAbaEnter: '[data-cy="aba-entrar"]',
+  btnAbaRegister: '[data-cy="aba-cadastrar"]',
   inpEmail: '[data-cy="input-email-login"]',
   inpPassword: '[data-cy="input-senha-login"]',
   btnEnter: '[data-cy="btn-entrar"]',
+  pErrorLogin: '[data-cy="auth-erro"]'
 };
 
 export const modalActivityElements = {
